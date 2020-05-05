@@ -13,12 +13,16 @@ class GameManager():
         self.board = Board()
         self.user =  UserInteractionHandler()
 
+    def run(self):
+        self.generate_game_board()
+        self.start_the_game()
+
     # Generate the game board
     def generate_game_board(self):
 
         # Game settings
-        g = self.user.reset_or_not()
-        if g == True:
+        is_reset_game = self.user.reset_or_not()
+        if is_reset_game:
             self.user.reset_game_size()
             self.user.reset_game_level()
             self.board.set_game_size(self.user.game_size)
@@ -29,7 +33,7 @@ class GameManager():
 
         # Print the empty game board
         self.board.print_user_board()
-        print(self.board.my_matrix)
+        #print(self.board.my_matrix)
     
     # Start to play the game
     def start_the_game(self):
@@ -58,5 +62,4 @@ class GameManager():
     
 
 gm = GameManager()
-gm.generate_game_board()
-gm.start_the_game()
+gm.run()
