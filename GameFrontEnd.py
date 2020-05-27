@@ -1,6 +1,5 @@
 from tkinter import *
 from tkinter import messagebox
-from PIL import ImageTk, Image
 import numpy as np
 from Backend import Backend
 
@@ -16,7 +15,7 @@ class GameFrontEnd:
     def __init__(self, master):
         self.master = master
         master.configure(bg = 'pink')
-        master.title("Have Fun at Nonograming")
+        master.title("Welcome to my Nonogram Game!")
         self.game_size = 5
         self.game_diff = 0.8
         self.marker = None
@@ -121,7 +120,7 @@ class GameFrontEnd:
                 messagebox.showinfo(title = "Oops", message = "Oops! Something is wrong...Check your answer?")
 
         # Interface
-        label = Label(master, text = "Welcome to my Nonogram Game!", font = LARGE_FONT, bg = 'pink')
+        label = Label(master, text = "Welcome to my Nonogram Game!", font = LARGE_FONT, bg = 'pink', wraplength = 500)
         label.grid(row = 0, column = 2, columnspan = 12)
 
         frame1 = Frame(master, bg = 'pink')
@@ -149,21 +148,25 @@ class GameFrontEnd:
         frame1.option2.grid(row = 1, column = 10, rowspan = 1, columnspan = 3)
         frame1.option_level.trace('w', select_level)
 
-        frame1.button1 = Button(frame1, text = "Start Game", command = start_game)
-        frame1.button1.configure(width = 12)
-        frame1.button1.grid(row = 2, column = 4, rowspan = 1, columnspan = 3, sticky = NW, pady = 0)
-
-        frame1.button2 = Button(frame1, text = "Check Answer", command = check_command)
-        frame1.button2.configure(width = 12)
-        frame1.button2.grid(row = 2, column = 7, rowspan = 1, columnspan = 3, sticky = NW, pady = 0)
+        frame1.label3 = Label(frame1, text = "Choose Marker")
+        frame1.label3.configure(width = 15, bg = 'pink')
+        frame1.label3.grid(row = 2, column = 2, rowspan = 1, columnspan = 4, sticky = 'wens')
 
         frame1.button3 = Button(frame1, bg = 'navy', command = lambda: click_sunken(frame1.button3, frame1.button4))
         frame1.button3.configure(width = 4, height = 2)
-        frame1.button3.grid(row = 3, column = 6)
+        frame1.button3.grid(row = 2, column = 6)
    
         frame1.button4 = Button(frame1, bg = 'light grey', command = lambda: click_sunken(frame1.button4, frame1.button3))
         frame1.button4.configure(width = 4, height = 2)
-        frame1.button4.grid(row = 3, column = 7)
+        frame1.button4.grid(row = 2, column = 7)
+
+        frame1.button1 = Button(frame1, text = "Start Game", command = start_game)
+        frame1.button1.configure(width = 12)
+        frame1.button1.grid(row = 3, column = 4, rowspan = 1, columnspan = 3, sticky = NW, pady = 0)
+
+        frame1.button2 = Button(frame1, text = "Check Answer", command = check_command)
+        frame1.button2.configure(width = 12)
+        frame1.button2.grid(row = 3, column = 7, rowspan = 1, columnspan = 3, sticky = NW, pady = 0)
 
 root = Tk()
 game = GameFrontEnd(root)
